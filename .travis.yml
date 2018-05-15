@@ -10,10 +10,12 @@ before_install:
   - gem install --no-ri --no-rdoc fpm
 
 install:
-  - go get -v github.com/Masterminds/glide
-  - cd $GOPATH/src/github.com/Masterminds/glide && git checkout tags/v0.12.3 && go install && cd - # use a known good glide version
-  - glide install
-
+  # - go get -v github.com/Masterminds/glide
+  # - cd $GOPATH/src/github.com/Masterminds/glide && git checkout tags/v0.12.3 && go install && cd - # use a known good glide version
+  # - glide install
+  - go get -v https://github.com/golang/dep.git
+  - cd $GOPATH/src/github.com/golang/dep && git checkout tags/v0.4.1 && go install && cd -
+  - dep ensure 
 script:
   - go test ./...
 
